@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects"
-import { CREATE_CHECKOUT, CREATE_CHECKOUT_RED,DELETE_CHECKOUT, DELETE_CHECKOUT_RED,GET_CHECKOUT,GET_CHECKOUT_RED,UPDATE_CHECKOUT, UPDATE_CHECKOUT_RED, } from "../Constent"
-import { createmultipleRecord, createRecord, deleteRecord, getRecord, updatemultipleRecord, updateRecord } from "../Service/Index"
+import { CREATE_CHECKOUT, CREATE_CHECKOUT_RED,DELETE_CHECKOUT, DELETE_CHECKOUT_RED,GET_CHECKOUT,GET_CHECKOUT_RED,UPDATE_CHECKOUT, UPDATE_CHECKOUT_RED, } from "../Constant"
+import { createmultipleRecord, createRecord, deleteRecord, getRecord, updatemultipleRecord, updateRecord } from "../Sagas/Service/Index"
 
 
 function* createSaga(action) {

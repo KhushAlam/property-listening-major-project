@@ -5,7 +5,7 @@ import MaincategorySagas from "./MaincategorySagas"
 import SubcategorySagas from "./SubcategorySagas"
 import TestimonialSagas from "./TestimonialSagas"
 import UsersSagas from "./UsersSagas"
-import PropertySagas from "./PropertySagas"
+import PropertySagas from "./PropertySagas";
 
 export default function* Rootsagas() {
     yield all([
@@ -15,6 +15,6 @@ export default function* Rootsagas() {
         ContactSagas(),
         TestimonialSagas(),
         UsersSagas(),
-        PropertySagas()
+        PropertySagas(),
     ])
 }

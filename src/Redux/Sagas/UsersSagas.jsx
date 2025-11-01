@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects"
-import { CREATE_USERS, CREATE_USERS_RED,DELETE_USERS, DELETE_USERS_RED,GET_USERS,GET_USERS_RED,UPDATE_USERS, UPDATE_USERS_RED, } from "../Constent"
+import { CREATE_USERS, CREATE_USERS_RED,DELETE_USERS, DELETE_USERS_RED,GET_USERS,GET_USERS_RED,UPDATE_USERS, UPDATE_USERS_RED, } from "../Constant"
 import { createmultipleRecord, createRecord, deleteRecord, getRecord, updatemultipleRecord, updateRecord } from "./Service/Index"
 
 

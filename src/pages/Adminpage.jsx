@@ -20,14 +20,19 @@ export default function Adminpage() {
 
   return (
     <>
-    <div className="container-fluid">
-      <div className="col-md-3 mt-2 mb-2">
-        <Sidebar/>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3 mt-2 mb-2">
+            <Sidebar />
+          </div>
+          <div className="col-md-9">
+            <h4 className="btn btn-primary text-light text-center w-100 mt-2">
+              Admin Home
+            </h4>
+          </div>
+        </div>
       </div>
-      <div className="col-md-9">
-        <h4 className='btn btn-dark text-light text-center w-100'>Admin Home</h4>
-      </div>
-    </div>
+
     </>
   );
 }

@@ -1,17 +1,11 @@
 import React from "react"
 export async function createRecord(collection, payload) {
-    let responce =  fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
-        method: "POST",
-        body: payload
-    })
-    return (await responce).json()
-}
-export async function createmultipleRecord(collection, payload) {
-    let responce =  fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
+    let responce = fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
         method: "POST",
         headers: {
+            "Content-Type": "application/json",
         },
-        body: payload
+        body: JSON.stringify(payload),
     })
     return (await responce).json()
 }
@@ -24,28 +18,25 @@ export async function getRecord(collection) {
     })
     return (await responce).json()
 }
-export async function updateRecord(collection, payload) {
-    let id = payload.get("_id");
-    let responce = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/update/${id}`, {
-        method: "PUT",
-        body: payload
-    })
-    return  responce.json()
-}
-
-export async function updatemultipleRecord(collection, payload) {
-    let responce = fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/update/${payload.id}`, {
+export async function updateRecord(collection, data) {
+    let id = data.id
+    let responce = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/${id}`, {
         method: "PUT",
         headers: {
+            "Content-Type": "application/json",
         },
-        body: payload
+        body: JSON.stringify(data),
     })
-    return (await responce).json()
+    return responce.json()
 }
 
+
 export async function deleteRecord(collection, id) {
-    let responce =  fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/delete/${id}`, {
+    let responce = fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/${id}`, {
         method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return (await responce).json()
 }
