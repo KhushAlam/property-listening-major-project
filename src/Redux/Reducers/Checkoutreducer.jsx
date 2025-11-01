@@ -5,13 +5,13 @@ export default function Checkoutreducer(state = [], action) {
         case CREATE_CHECKOUT_RED:
             return [...state, action.payload]
         case GET_CHECKOUT_RED:
-            return action.payload.data
+            return action.payload
         case UPDATE_CHECKOUT_RED:
             return state.map((x) =>
-                x._id === action.payload._id ? { ...x, ...action.payload } : x
+                x.id === action.payload.id ? { ...x, ...action.payload } : x
             );
         case DELETE_CHECKOUT_RED:
-            return state.filter((x) => x._id !== action.payload._id)
+            return state.filter((x) => x.id !== action.payload.id)
 
         default:
             return state

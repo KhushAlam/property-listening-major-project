@@ -5,13 +5,13 @@ export default function Contactreducer(state = [], action) {
         case CREATE_CONTACT_RED:
             return [...state, action.payload]
         case GET_CONTACT_RED:
-            return action.payload.data
+            return action.payload
         case UPDATE_CONTACT_RED:
             return state.map((x) =>
-                x._id === action.payload._id ? { ...x, ...action.payload } : x
+                x.id === action.payload.id ? { ...x, ...action.payload } : x
             );
         case DELETE_CONTACT_RED:
-            return state.filter((x) => x._id !== action.payload._id)
+            return state.filter((x) => x.id !== action.payload.id)
 
         default:
             return state

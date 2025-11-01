@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Sidebar from '../../components/Sidebar'
 import Formvalidator from '../../Validator/Fromvalidator'
-import { Getmaincategory, Updatemaincategory } from "../../Redux/Actioncreator/Maincategoryactioncreator"
+import { Getcheckout, Updatecheckout } from "../../Redux/Actioncreator/Chechoutactioncreator"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
 export default function Maincategoryupdate() {
     let dispatch = useDispatch();
     let navigate = useNavigate();
-    let maincategoryStatedata = useSelector(state => state.maincategoryStatedata)
+    let checkoutStatedata = useSelector(state => state.checkoutStatedata)
 
     let { id } = useParams()
     let [data, setdata] = useState({
@@ -49,7 +49,7 @@ export default function Maincategoryupdate() {
             setshow(true)
         }
         else {
-            let item = maincategoryStatedata.find(x => x.id !== id && x.state.toLowerCase() === data.state.toLowerCase())
+            let item = checkoutStatedata.find(x => x.id !== id && x.state.toLowerCase() === data.state.toLowerCase())
             if (item) {
                 setshow(true)
                 seterrormassege((old) => {
@@ -60,15 +60,15 @@ export default function Maincategoryupdate() {
                 })
                 return
             }
-            dispatch(Updatemaincategory(data));
-            navigate("/admin/maincategory");
+            dispatch(Updatecheckout(data));
+            navigate("/admin/checkout");
         }
     }
 
     useEffect(() => {
-        dispatch(Getmaincategory())
-        if (maincategoryStatedata.length) {
-            setdata(maincategoryStatedata.find(x => x.id === id))
+        dispatch(Getcheckout())
+        if (checkoutStatedata.length) {
+            setdata(checkoutStatedata.find(x => x.id === id))
         }
     }, [])
     return (
@@ -80,8 +80,8 @@ export default function Maincategoryupdate() {
                     </div>
                     <div className="col-md-9">
                         <h5 className="text-center p-2 bg-primary w-100 text-light">
-                            Maincategory
-                            <Link to="/admin/maincategory">
+                           Update Checkout
+                            <Link to="/admin/checkout">
                                 <i className="fa fa-long-arrow-left text-light float-end"></i>
                             </Link>
                         </h5>

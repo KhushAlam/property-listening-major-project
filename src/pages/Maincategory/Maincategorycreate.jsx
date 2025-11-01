@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from '../../components/Sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import Fromvalidator from "../../Validator/Fromvalidator";
-import { Createmaincategory } from "../../Redux/Actioncreator/Maincategoryactioncreator"
+import { Createmaincategory, Getmaincategory } from "../../Redux/Actioncreator/Maincategoryactioncreator"
 
 export default function Maincategorycreate() {
 
@@ -60,6 +60,10 @@ export default function Maincategorycreate() {
       }
     }
   }
+
+  useEffect(() => {
+    dispatch(Getmaincategory())
+  }, [maincategoryStatedata]);
   return (
     <>
       <div className="container-fluid my-3">

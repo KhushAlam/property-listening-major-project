@@ -5,22 +5,22 @@ import $ from 'jquery'
 import 'datatables.net';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import { useDispatch, useSelector } from "react-redux";
-import { Getmaincategory, Deletemaincategory } from "../../Redux/Actioncreator/Maincategoryactioncreator"
+import { Getcheckout, Deletecheckout } from "../../Redux/Actioncreator/Chechoutactioncreator"
 
-export default function Maincategory() {
+export default function Checkout() {
   let dispach = useDispatch()
-  let maincategoryStatedata = useSelector(state => state.maincategoryStatedata)
+  let checkoutStatedata = useSelector(state => state.checkoutStatedata)
 
   async function deleteitem(id) {
     if (window.confirm("Are you sure to delete item")) {
-      let item = maincategoryStatedata?.find(x => x.id === id);
-      dispach(Deletemaincategory(item))
+      let item = checkoutStatedata?.find(x => x.id === id);
+      dispach(Deletecheckout(item))
       getapidata();
     }
   }
   function getapidata() {
-    dispach(Getmaincategory())
-    if (maincategoryStatedata.length) {
+    dispach(Getcheckout())
+    if (checkoutStatedata.length) {
       let time = setTimeout(() => {
         $('#myTable').DataTable()
       }, 300)
@@ -41,8 +41,8 @@ export default function Maincategory() {
           </div>
           <div className="col-md-9">
             <h5 className="text-center p-2 bg-primary w-100 text-light">
-              Maincategory
-              <Link to="/admin/maincategory/create">
+             Checkouts
+              <Link to="/admin/checkout/create">
                 <i className="fa fa-plus text-light float-end"></i>
               </Link>
             </h5>
@@ -60,7 +60,7 @@ export default function Maincategory() {
                 </thead>
                 <tbody>
                   {
-                    maincategoryStatedata?.map((item, index) => {
+                    checkoutStatedata?.map((item, index) => {
                       return (
                         <tr key={item.id || index}>
                           <td>{item.id}</td>
@@ -69,7 +69,7 @@ export default function Maincategory() {
                           <td>{item.active === true ? "Yes" : "No"}</td>
                           <td>
                             <button className="btn btn-primary">
-                              <Link to={`/admin/maincategory/update/${item.id}`}><i className="fa fa-edit text-light"></i></Link>
+                              <Link to={`/admin/checkout/update/${item.id}`}><i className="fa fa-edit text-light"></i></Link>
                             </button>
                           </td>
                           <td>

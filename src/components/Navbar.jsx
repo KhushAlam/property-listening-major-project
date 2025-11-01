@@ -48,9 +48,9 @@ export default function Navbar() {
           </NavLink>
         </li>
       </ul>
-      <button className="btn btn-outline-light" type="submit">
+      <NavLink to="/login"><button className="btn btn-outline-light" type="submit">
           Login
-        </button>
+        </button></NavLink>
       <NavLink to="/admin" ><button className="btn btn-outline-light"> Admin</button></NavLink>
     </div>
   </div>

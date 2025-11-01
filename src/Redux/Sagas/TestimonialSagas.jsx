@@ -4,27 +4,23 @@ import { createmultipleRecord, createRecord, deleteRecord, getRecord, updatemult
 
 
 function* createSaga(action) {
-    let responce = yield call(createRecord,"contact/create",action.payload)
+    let responce = yield call(createRecord,"testimonial",action.payload)
     yield put({ type: CREATE_TESTIMONIAL_RED, payload: responce })
 
-    // let responce = yield createmultipleRecord("contactus")
-    // yield put({ type: CREATE_TESTIMONIAL_RED, payload: responce })
 }
 
 function* getSaga(action) {
-    let responce = yield call(getRecord,"contact/get",action.payload)
+    let responce = yield call(getRecord,"testimonial",action.payload)
     yield put({ type: GET_TESTIMONIAL_RED, payload: responce })
 }
 function* updateSaga(action) {
-    let responce = yield updateRecord("contactus", action.payload)
+    let responce = yield call(updateRecord,"testimonial", action.payload)
     yield put({ type: UPDATE_TESTIMONIAL_RED, payload: action.payload })
 
-    // let responce = yield updatemultipleRecord("contactus", action.payload)
-    // yield put({ type: UPDATE_TESTIMONIAL_RED, payload: action.payload })
 }
 function* deleteSaga(action) {
-    let id = action.payload._id;
-    let responce = yield call(deleteRecord,"contact",id)
+    let id = action.payload.id;
+    let responce = yield call(deleteRecord,"testimonial",id)
     yield put({ type: DELETE_TESTIMONIAL_RED, payload: action.payload })
 }
 export default function* contactSagas() {

@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from '../../components/Sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import Fromvalidator from "../../Validator/Fromvalidator";
-import { Createmaincategory } from "../../Redux/Actioncreator/Maincategoryactioncreator"
+import { Createproperty,Getproperty } from "../../Redux/Actioncreator/Propertyactioncreator"
 
-export default function Maincategorycreate() {
+export default function Propertycreate() {
 
   let dispatch = useDispatch()
   let navigate = useNavigate();
-  let maincategoryStatedata = useSelector(state => state.maincategoryStatedata);
+  let propertyStatedata = useSelector(state => state.propertyStatedata);
   let [data, setdata] = useState({
     state: "",
     city: "",
@@ -44,7 +44,7 @@ export default function Maincategorycreate() {
     if (error) {
       setshow(true)
     } else {
-      let item = maincategoryStatedata.find(x => x.state === data.state || x.city === data.city);
+      let item = propertyStatedata.find(x => x.state === data.state || x.city === data.city);
       if (item) {
         setshow(true);
         seterrormassege((old) => {
@@ -55,11 +55,15 @@ export default function Maincategorycreate() {
         })
         return
       } else {
-        dispatch(Createmaincategory(data))
-        navigate("/admin/maincategory");
+        dispatch(Createproperty(data))
+        navigate("/admin/property");
       }
     }
   }
+  useEffect(()=>{
+    dispatch(Getproperty())
+  },[propertyStatedata])
+
   return (
     <>
       <div className="container-fluid my-3">
@@ -69,8 +73,8 @@ export default function Maincategorycreate() {
           </div>
           <div className="col-md-9">
             <h5 className="text-center p-2 bg-primary w-100 text-light">
-              Maincategory
-              <Link to="/admin/maincategory">
+              Property Create
+              <Link to="/admin/property">
                 <i className="fa fa-long-arrow-left text-light float-end"></i>
               </Link>
             </h5>
