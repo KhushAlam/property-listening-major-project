@@ -34,17 +34,17 @@ export default function Navbar() {
         </li>
         <li className="nav-item dropdown">
           <NavLink className="nav-link text-light" to="/about">
+            Properties 
+          </NavLink>
+        </li>
+        <li className="nav-item dropdown">
+          <NavLink className="nav-link text-light" to="/about">
             Testimonial
           </NavLink>
         </li>
         <li className="nav-item dropdown">
           <NavLink className="nav-link text-light" to="/about">
             Contract us
-          </NavLink>
-        </li>
-        <li className="nav-item dropdown">
-          <NavLink className="nav-link text-light" to="/about">
-            Properties 
           </NavLink>
         </li>
       </ul>

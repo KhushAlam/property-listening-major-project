@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import Breadcrum from '../Components/Breadcrum'
 import { Link, useNavigate } from 'react-router-dom';
-import Formvalidator from '../Validator/Formvalidator';
-import Filesvalidator from '../Validator/Filesvalidator';
+import Formvalidator from '../Validator/Fromvalidator';
 export default function SignupPage() {
     let navigate = useNavigate();
     let [data, setdata] = useState({
@@ -12,6 +10,7 @@ export default function SignupPage() {
         email: "",
         password: "",
         cpassword: "",
+        rol:"Buyer",
         active: true,
     });
     let [errormassege, seterrormassege] = useState({
@@ -48,14 +47,14 @@ export default function SignupPage() {
             }
             else {
 
-                let response = await fetch(`${process.env.REACT_APP_SITE_MAINCATEGORY}user/get`, {
+                let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
                     method: "GET",
                     headers: {
                         "content-type": "application/json"
                     },
                 })
                 response = await response.json();
-                let item = response.data?.find(x => (x.username?.toLowerCase() === data.username?.toLowerCase()) || (x.email.toLowerCase() === data.email?.toLowerCase()))
+                let item = response?.find(x => (x.username?.toLowerCase() === data.username?.toLowerCase()) || (x.email.toLowerCase() === data.email?.toLowerCase()))
                 if (item) {
                     setshow(true);
                     seterrormassege((old) => {
@@ -67,23 +66,15 @@ export default function SignupPage() {
                     })
                     return
                 }
-
-                const Fromdata = new FormData()
-                Object.keys(data).forEach(key =>
-                    Fromdata.append(key, data[key])
-                )
-                let role="Buyer"
-                Fromdata.append("role", role);
-                Fromdata.append("active", true);
-                response = await fetch(`${process.env.REACT_APP_SITE_MAINCATEGORY}user/create`, {
+                response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
                     method: "POST",
-                    headers: {
+                   headers: {
+                        "content-type": "application/json"
                     },
-                    body: Fromdata
+                    body: JSON.stringify(data)
                 })
                 response = await response.json()
                 navigate("/login")
-
             }
         } else {
             setshow(true);
@@ -97,8 +88,7 @@ export default function SignupPage() {
     }
     return (
         <>
-            <Breadcrum title="Signup - Create Your Account" />
-            <div className="container-fluid my-2">
+            <div className="container-fluid my-2 mt-5 mb-5">
                 <div className="row">
                     <form onSubmit={postinputdata}>
                         <div className="col-lg-9 col-md-10 col-sm-11 m-auto">

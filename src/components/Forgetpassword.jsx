@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Breadcrum from './Breadcrum'
 import { Link, useNavigate } from 'react-router-dom'
-import Formvalidator from '../Validator/Formvalidator'
+import Formvalidator from '../Validator/Fromvalidator'
 
 export default function Forgetpassword() {
     let navigate = useNavigate()
@@ -41,7 +40,7 @@ export default function Forgetpassword() {
             setshow(true);
         }
         else {
-            let responce = await fetch(`${process.env.REACT_APP_SITE_MAINCATEGORY}user`, {
+            let responce = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
                 method: "GET",
                 headers: {
                     "content-type": "application/json"
@@ -51,7 +50,7 @@ export default function Forgetpassword() {
             let existuser = responce.find(x => x.username === data.username);
             
             if (existuser) {
-                let responce = await fetch(`${process.env.REACT_APP_SITE_MAINCATEGORY}user/${existuser.id ? existuser.id : ""}`, {
+                let responce = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}users/${existuser.id}`, {
                     method: "PATCH",
                     headers: {
                         'content-type': 'application/json'
@@ -75,8 +74,7 @@ export default function Forgetpassword() {
     }
     return (
         <>
-            <Breadcrum title="Forget Your Password" />
-            <div className="container-fluid my-2">
+            <div className="container-fluid my-2 mt-5 mb-5">
                 <div className="row">
                     <form onSubmit={postinputdata}>
                         <div className="col-lg-7 col-md-8 col-sm-10 m-auto">

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+import Home from './pages/Homepage';
 import Adminpage from './pages/Adminpage';
 import Maincategory from './pages/Maincategory/Maincategory';
 import Maincategorycreate from './pages/Maincategory/Maincategorycreate';
@@ -30,6 +30,8 @@ import Usersupdate from "./pages/Users/Usersupdate";
 import Contectus from './pages/Contect/Contect';
 import Contactusupdate from './pages/Contect/Contectupdate';
 import LoginPage from './components/Login';
+import SignupPage from "./components/Signup";
+import Forgetpassword from './components/Forgetpassword';
 
 export default function App() {
   return (
@@ -39,6 +41,9 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Adminpage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/forget-password" element={<Forgetpassword/>}/>
+
 
 
         <Route path='/admin/maincategory' element={<Maincategory />} />

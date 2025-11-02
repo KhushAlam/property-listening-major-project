@@ -21,7 +21,7 @@ export default function LoginPage() {
   async function postinputdata(e) {
     e.preventDefault();
 
-    let response = await fetch(`${process.env.REACT_APP_SITE_MAINCATEGORY}user/login`, {
+    let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -30,29 +30,25 @@ export default function LoginPage() {
     });
 
     response = await response.json();
-    
-      alert(response.message);
-      
-    if(!response||!response.data){
+          
+    if(!response||!response){
       seterrormassege("User Id Or Password Invalid")
       return 
     }
-    let item = response.data;
+    let item = response;
     if (item && item.active === "fa") {
       seterrormassege("Your Account is Blocked. Contact us for unBlock");
       return;
     } else if (item) {
       localStorage.setItem("login", true);
       localStorage.setItem("name", item.name);
-      localStorage.setItem("userid", item._id);
+      localStorage.setItem("userid", item.id);
       localStorage.setItem("role", item.role);
-      localStorage.setItem("token", response.token);
 
       if (item.role === "Buyer") {
         navigate("/profile");
-      } else if (item.role === undefined) {
-        navigate("/*");
-      } else {
+      } 
+       else {
         navigate("/admin");
       }
     } else {
@@ -63,7 +59,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="container-fluid my-2">
+      <div className="container-fluid my-2 mt-5 mb-5">
         <div className="row">
           <form onSubmit={postinputdata}>
             <div className="col-lg-7 col-md-8 col-sm-10 m-auto">

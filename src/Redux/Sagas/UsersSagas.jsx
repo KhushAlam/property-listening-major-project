@@ -20,7 +20,7 @@ function* updateSaga(action) {
 }
 function* deleteSaga(action) {
     let id = action.payload.id;
-    let responce = yield call(deleteRecord,"user",id)
+    let responce = yield call(deleteRecord,"users",id)
     yield put({ type: DELETE_USERS_RED, payload: action.payload })
 }
 export default function* contactSagas() {
